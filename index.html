@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratik</title>
+       <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #gameboard {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            margin: 20px auto;
+            width: 310px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid #333;
+            font-size: 60px;
+            cursor: pointer;
+        }
+
+        #message {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        #restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div id="gameboard">
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+        <button class="cell"></button>
+    </div>
+    <div id="message">Player X's turn</div>
+    <button id="restart">Restart Game</button>
+
+ 
+    <script>
+        let cells = document.querySelectorAll('.cell');
+        let message = document.getElementById('message');
+        let restartButton = document.getElementById('restart');
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let currentPlayer = "X";
+        let gameActive = true;
+
+        const winConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        cells.forEach((cell, index) => {
+            cell.addEventListener('click', () => {
+                if (board[index] !== "" || !gameActive) {
+                    return;
+                }
+
+                board[index] = currentPlayer;
+                cell.textContent = currentPlayer;
+
+                let roundWon = false;
+                for (let i = 0; i < winConditions.length; i++) {
+                    const condition = winConditions[i];
+                    const a = board[condition[0]];
+                    const b = board[condition[1]];
+                    const c = board[condition[2]];
+
+                    if (a === "" || b === "" || c === "") {
+                        continue;
+                    }
+                    if (a === b && b === c) {
+                        roundWon = true;
+                        break;
+                    }
+                }
+
+                if (roundWon) {
+                    message.textContent = `Player ${currentPlayer} wins!`;
+                    gameActive = false;
+                    return;
+                }
+
+                if (!board.includes("")) {
+                    message.textContent = "Draw!";
+                    gameActive = false;
+                    return;
+                }
+
+                currentPlayer = currentPlayer === "X" ? "O" : "X";
+                message.textContent = `Player ${currentPlayer}'s turn`;
+            });
+        });
+
+        restartButton.addEventListener('click', () => {
+            gameActive = true;
+            currentPlayer = "X";
+            board = ["", "", "", "", "", "", "", "", ""];
+            message.textContent = `Player X's turn`;
+            cells.forEach(cell => {
+                cell.textContent = "";
+            });
+        });
+    </script>
+</body>
+    
+</body>
+</html>
