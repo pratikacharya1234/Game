@@ -1,141 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratik</title>
-       <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        #gameboard {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 5px;
-            margin: 20px auto;
-            width: 310px;
-        }
-
-        .cell {
-            width: 100px;
-            height: 100px;
-            background-color: #fff;
-            border: 2px solid #333;
-            font-size: 60px;
-            cursor: pointer;
-        }
-
-        #message {
-            font-size: 20px;
-            margin-top: 10px;
-        }
-
-        #restart {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-
+    <title>Password Security - Home</title>
 </head>
-<body>
-    <h1>Tic Tac Toe</h1>
-    <div id="gameboard">
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-    </div>
-    <div id="message">Player X's turn</div>
-    <button id="restart">Restart Game</button>
-
- 
-    <script>
-        let cells = document.querySelectorAll('.cell');
-        let message = document.getElementById('message');
-        let restartButton = document.getElementById('restart');
-        let board = ["", "", "", "", "", "", "", "", ""];
-        let currentPlayer = "X";
-        let gameActive = true;
-
-        const winConditions = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
-
-        cells.forEach((cell, index) => {
-            cell.addEventListener('click', () => {
-                if (board[index] !== "" || !gameActive) {
-                    return;
-                }
-
-                board[index] = currentPlayer;
-                cell.textContent = currentPlayer;
-
-                let roundWon = false;
-                for (let i = 0; i < winConditions.length; i++) {
-                    const condition = winConditions[i];
-                    const a = board[condition[0]];
-                    const b = board[condition[1]];
-                    const c = board[condition[2]];
-
-                    if (a === "" || b === "" || c === "") {
-                        continue;
-                    }
-                    if (a === b && b === c) {
-                        roundWon = true;
-                        break;
-                    }
-                }
-
-                if (roundWon) {
-                    message.textContent = `Player ${currentPlayer} wins!`;
-                    gameActive = false;
-                    return;
-                }
-
-                if (!board.includes("")) {
-                    message.textContent = "Draw!";
-                    gameActive = false;
-                    return;
-                }
-
-                currentPlayer = currentPlayer === "X" ? "O" : "X";
-                message.textContent = `Player ${currentPlayer}'s turn`;
-            });
-        });
-
-        restartButton.addEventListener('click', () => {
-            gameActive = true;
-            currentPlayer = "X";
-            board = ["", "", "", "", "", "", "", "", ""];
-            message.textContent = `Player X's turn`;
-            cells.forEach(cell => {
-                cell.textContent = "";
-            });
-        });
-    </script>
-</body>
+<body style="background-color: lightblue; font-family: Arial; padding: 20px;">
+    
+    <h1>Password Security and Authentication</h1>
+    
+    <h2>Navigation</h2>
+    <p>
+        <a href="index.html">Home</a> | 
+        <a href="mfa.html">Multi-Factor Authentication</a> | 
+        <a href="password-managers.html">Password Managers</a>
+    </p>
+    
+    <hr>
+    
+    <img src="https://via.placeholder.com/600x300/4a90e2/ffffff?text=Password+Security" alt="Password Security Banner" width="600" height="300">
+    
+    <h2>Introduction to Password Security</h2>
+    
+    <p>Password security is one of the most important topics in computer security today. Every day, millions of people use passwords to protect their email accounts, bank accounts, social media profiles, and many other online services. A password is like a key to your digital life. If someone gets your password, they can access your personal information, steal your money, or pretend to be you online. That is why it is so important to understand how to create strong passwords and keep them safe.</p>
+    
+    <p>Unfortunately, many people do not take password security seriously enough. They use simple passwords like "password123" or "12345678" which are very easy for hackers to guess. Some people use the same password for many different websites. This is dangerous because if one website gets hacked and your password is stolen, the hacker can then try that same password on all your other accounts. In 2024, over 12 billion dollars were lost to identity theft and cybercrime related to stolen passwords. Learning about password security can help protect you from becoming a victim.</p>
+    
+    <h2>Topics Covered on This Website</h2>
+    
+    <p>This website will teach you about two important topics that can help keep your online accounts safe:</p>
+    
+    <ul>
+        <li><strong>Multi-Factor Authentication (MFA)</strong> - This is a security method that adds an extra layer of protection beyond just your password. Even if someone steals your password, they still cannot get into your account without the second factor.</li>
+        <li><strong>Password Managers</strong> - These are special programs that help you create strong passwords and remember them for you. Instead of trying to remember 50 different passwords, you only need to remember one master password.</li>
+    </ul>
+    
+    <p>Click on the links above to learn more about each topic. Both of these security methods are easy to use and can make your online accounts much safer.</p>
+    
+    <h2>External Resources</h2>
+    
+    <p>Here are some helpful websites where you can learn more about computer security:</p>
+    
+    <ul>
+        <li><a href="https://www.cisa.gov/secure-our-world" target="_blank">CISA Secure Our World</a> - Official U.S. government cybersecurity resources</li>
+        <li><a href="https://www.nist.gov/cybersecurity" target="_blank">NIST Cybersecurity</a> - National Institute of Standards and Technology security guides</li>
+        <li><a href="https://staysafeonline.org/" target="_blank">Stay Safe Online</a> - Tips for staying safe on the internet</li>
+    </ul>
+    
+    <hr>
+    
+    <p><small>CS1030 Computer Security Project by Nandip Giri</small></p>
     
 </body>
 </html>
